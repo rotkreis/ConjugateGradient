@@ -589,7 +589,20 @@ Matrix operator/(const Matrix& m1, const TYPE& num){
     res /= num;
     return res;
 }
-
+mVector operator+(const mVector& m1, const mVector& m2){
+    mVector res(m1.dim());
+    for (int i = 0; i != m1.dim(); i++) {
+        res[i] = m1[i] + m2[i];
+    }
+    return res;
+}
+mVector operator-(const mVector& m1, const mVector& m2){
+    mVector res(m1.dim());
+    for (int i = 0; i != m1.dim(); i++) {
+        res[i] = m1[i] - m2[i];
+    }
+    return res;
+}
 mVector operator*(const Matrix& m1, const mVector& m2){
     assert(m1.GetNumCols() == m2.GetNumRows());
     mVector res(m1.GetNumRows());
@@ -601,7 +614,10 @@ mVector operator*(const Matrix& m1, const mVector& m2){
 }
 mVector operator*(const mVector& m1, const TYPE& num){
     mVector res(m1.GetNumRows());
-    return res * num;
+    for (int i = 0; i != res.dim(); i++) {
+        res[i] = m1[i] * num;
+    }
+    return res;
 }
 mVector operator*(const TYPE& num, const mVector& m1){
     return m1 * num;
@@ -616,7 +632,7 @@ std::ostream& operator<<(std::ostream& out, const Matrix& m){
     if(m.data == nullptr) cout << "Empty Matrix";
     for (i = 0; i != m.mNumRows; i++){
         for(j = 0; j!= m.mNumCols; j++){
-            out << m[j][i];
+            out << m[j][i] << " ";
         }
         out << std::endl;
     }
@@ -628,7 +644,7 @@ std::ofstream& operator<<(std::ofstream& out, Matrix& m){
     if(m.data == nullptr) cout << "Empty Matrix";
     for (i = 0; i != m.mNumRows; i++){
         for(j = 0; j!= m.mNumCols; j++){
-            out << m[j][i];
+            out << m[j][i] << " " ;
         }
         out << std::endl;
     }

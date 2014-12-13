@@ -10,5 +10,8 @@
 #define __CongujateGradient__CG__
 
 #include <stdio.h>
+#include "Matrix.h"
+int CGSolver(Matrix& A, mVector& b, mVector& res, mVector& guess, double precision, int max);
+
 
 #endif /* defined(__CongujateGradient__CG__) */

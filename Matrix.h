@@ -129,6 +129,8 @@ int upperSolve(const Matrix& u,const Matrix& rhs, Matrix& res);
 class mVector : public Matrix {
 public:
     using Matrix::operator=;
+    using Matrix::operator/=;
+    using Matrix::operator*=;
     using Matrix::operator+=;
     using Matrix::operator-=;
 public:
@@ -170,6 +172,8 @@ public:
     double Norm_2();
     double Norm_1();
 };
+mVector operator+(const mVector& m1, const mVector& m2);
+mVector operator-(const mVector& m1, const mVector& m2);
 mVector operator*(const Matrix& m1, const mVector& m2);
 mVector operator*(const mVector& m1, const TYPE& num);
 mVector operator*(const TYPE& num, const mVector& m1);
