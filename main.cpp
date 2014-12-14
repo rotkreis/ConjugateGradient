@@ -92,33 +92,45 @@ int main(int argc, const char * argv[]) {
   
     
     // -------------- Problem 2
-//    int dim = 20;
-//    mVector res(dim);
-//    mVector guess(dim);
-//    for (int i = 0; i != dim; i++) {
-//        guess[i] = 1;
-//    }
-//    Matrix A = CreateHilbertMatrix(dim);
-//    mVector b = CreateHilbertRHS(dim);
+    int dim = 40;
+    mVector res(dim);
+    mVector guess(dim);
+    for (int i = 0; i != dim; i++) {
+        guess[i] = 1;
+    }
+    Matrix A = CreateHilbertMatrix(dim);
+    mVector b = CreateHilbertRHS(dim);
+    for (int i = 20; i <= 200 ; i += 10) {
+        int dim = i;
+        mVector res(dim);
+        mVector guess(dim);
+        for (int i = 0; i != dim; i++) {
+            guess[i] = 1;
+        }
+        Matrix A = CreateHilbertMatrix(dim);
+        mVector b = CreateHilbertRHS(dim);
+        std::cout << dim << ",";
+        std::cout << CGSolver(A, b, res, guess, 10E-14, 200) << "\\\\" <<endl;
+    }
 //    std::cout << CGSolver(A, b, res, guess, 10E-14, 100) << endl;
 //    std::cout << res;
     
 
     // --------------Problem 3
-    Matrix prob3(5,5);
-    prob3 = {10,1,2,3,4,1,9,-1,2,-3,2,-1,7,3,-5,3,2,3,12,-1,4,-3,-5,-1,15};
-    mVector rhs3(5);
-    rhs3 = {12,-27,14,-17,12};
-    mVector res3(5);
-    mVector guess3(5);
-    mVector Jacobi(5);
-    mVector GS(5);
-    double precision = 10E-5;
-    std::cout <<"CG: " <<CGSolver(prob3, rhs3, res3, guess3, precision, 100) << std::endl;
-    std::cout << res3;
-    std::cout <<"Jacobi: "<< IterativeMethods::JacobiSolve(prob3, rhs3, guess3, Jacobi, precision) << std::endl;
-    std::cout << Jacobi;
-    std::cout << "GS: " << IterativeMethods::GaussSolve(prob3, rhs3, guess3, GS, precision) << std::endl;
-    std::cout << GS;
+//    Matrix prob3(5,5);
+//    prob3 = {10,1,2,3,4,1,9,-1,2,-3,2,-1,7,3,-5,3,2,3,12,-1,4,-3,-5,-1,15};
+//    mVector rhs3(5);
+//    rhs3 = {12,-27,14,-17,12};
+//    mVector res3(5);
+//    mVector guess3(5);
+//    mVector Jacobi(5);
+//    mVector GS(5);
+//    double precision = 10E-5;
+//    std::cout <<"CG: " <<CGSolver(prob3, rhs3, res3, guess3, precision, 100) << std::endl;
+//    std::cout << res3;
+//    std::cout <<"Jacobi: "<< IterativeMethods::JacobiSolve(prob3, rhs3, guess3, Jacobi, precision) << std::endl;
+//    std::cout << Jacobi;
+//    std::cout << "GS: " << IterativeMethods::GaussSolve(prob3, rhs3, guess3, GS, precision) << std::endl;
+//    std::cout << GS;
     return 0;
 }
